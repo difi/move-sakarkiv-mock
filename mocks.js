@@ -19,6 +19,7 @@ const mocks = [
                     PutMessage : function(args) {
 
                         let id = bestedu.getId();
+                        let message = bestedu.getMessage(args.payload)
                         bestedu.putMessage(args, id);
 
                         return {

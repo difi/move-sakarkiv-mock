@@ -17,7 +17,7 @@ module.exports = {
     putMessage: function (receivedMesssage, id) {
         let args = {
             envelope: {
-                attributes: { conversationId: receivedMesssage.envelope.attributes.conversationId } ,
+                attributes: { conversationId: receivedMesssage.envelope.attributes.conversationId },
                 sender: {
                     orgnr: receivedMesssage.envelope.sender.orgnr,
                     ref: receivedMesssage.envelope.sender.ref
@@ -35,16 +35,25 @@ module.exports = {
             });
         });
     },
-    
-    getId: function(){
+
+    getId: function () {
         min = Math.ceil(1);
         max = Math.floor(100000);
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+
+    getMessage: function (xml) {
+        var parseString = require('xml2js').parseString;
+        console.log(xml.toString());
+
+        parseString(xml.toString(), {trim: true}, function (err, result) {
+            return result;
+        });
     }
 };
 
-function getPutMessagePayload(id){
-    let xml = "<AppReceipt type=\"OK\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.arkivverket.no/Noark/Exchange/types\"><message code=\"ID\" xmlns=\"\"><text>"+id+"</text></message></AppReceipt>";
+function getPutMessagePayload(id) {
+    let xml = "<AppReceipt type=\"OK\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.arkivverket.no/Noark/Exchange/types\"><message code=\"ID\" xmlns=\"\"><text>" + id + "</text></message></AppReceipt>";
     return xml;
 }
 

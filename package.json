@@ -7,7 +7,9 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "soap": "^0.24.0",
-    "ws.js": "^2.0.23"
+    "ws.js": "^2.0.23",
+    "xml": "^1.0.1",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {},
   "scripts": {
