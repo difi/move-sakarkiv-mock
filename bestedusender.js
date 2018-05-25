@@ -14,7 +14,7 @@ module.exports = {
         });
     },
 
-    putMessage: function (receivedMesssage, id) {
+    sendAppReceipt: function (receivedMesssage, id) {
         let args = {
             envelope: {
                 attributes: { conversationId: receivedMesssage.envelope.attributes.conversationId },
@@ -26,8 +26,8 @@ module.exports = {
                     orgnr: receivedMesssage.envelope.receiver.orgnr,
                     ref: receivedMesssage.envelope.receiver.ref
                 }
-            },
-            payload: getPutMessagePayload(id)
+            },            
+            payload: getAppReceiptPayload(id)
         }
         soap.createClient(url, function (err, client) {
             client.GetCanReceiveMessage(args, function (err, result) {
@@ -52,7 +52,7 @@ module.exports = {
     }
 };
 
-function getPutMessagePayload(id) {
+function getAppReceiptPayload(id) {
     let xml = "<AppReceipt type=\"OK\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.arkivverket.no/Noark/Exchange/types\"><message code=\"ID\" xmlns=\"\"><text>" + id + "</text></message></AppReceipt>";
     return xml;
 }

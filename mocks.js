@@ -20,7 +20,8 @@ const mocks = [
 
                         let id = bestedu.getId();
                         let message = bestedu.getMessage(args.payload)
-                        bestedu.putMessage(args, id);
+                        //check if message is of type Message or AppReceipt. If Message send AppReceipt, else return result
+                        bestedu.sendAppReceipt(args, id);
 
                         return {
                             result : 
