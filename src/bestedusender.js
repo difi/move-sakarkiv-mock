@@ -1,14 +1,14 @@
 let soap = require('soap');
-let url = 'http://localhost:8088/bestedu?WSDL';
+let url = 'http://localhost:9093/noarkExchange?wsdl';
 
 module.exports = {
 
 
-    getCanReceive: function (receiverOrgnr) {
+    getCanReceive: (receiverOrgnr) =>  {
 
         let args = { receiver: { orgnr: receiverOrgnr } };
-        soap.createClient(url, function (err, client) {
-            client.GetCanReceiveMessage(args, function (err, result) {
+        soap.createClient(url, (err, client) => {
+            client.GetCanReceiveMessage(args, (err, result) => {
                 console.log(result);
             });
         });
@@ -28,22 +28,29 @@ module.exports = {
                 }
             },            
             payload: getAppReceiptPayload(id)
-        }
-        soap.createClient(url, function (err, client) {
-            client.GetCanReceiveMessage(args, function (err, result) {
-                console.log(result);
-            });
+        };
+        soap.createClient(url, (err, client) => {
+
+            console.log('err', err);
+
+            if (err){
+                console.error(err);
+            } else {
+                client.GetCanReceiveMessage(args, (err, result) => {
+                    console.log(result);
+                });
+            }
         });
     },
 
     getId: function () {
-        min = Math.ceil(1);
-        max = Math.floor(100000);
+        let min = Math.ceil(1);
+        let max = Math.floor(100000);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
 
     getMessage: function (xml) {
-        var parseString = require('xml2js').parseString;
+        let parseString = require('xml2js').parseString;
         console.log(xml.toString());
 
         parseString(xml.toString(), {trim: true}, function (err, result) {

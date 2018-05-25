@@ -1,10 +1,11 @@
 let bestedu = require('./bestedusender.js');
+const path = require('path');
 
 const mocks = [
     {
         name: "P360",
         pathName: '/p360',
-        wsdlUrl: 'wsdl\\p360.wsdl',
+        wsdlUrl:  path.join('wsdl', 'p360.wsdl'),
         service: {
             EDUImportService: {
                 BasicHttpBinding_IEDUImport: {                    
@@ -16,19 +17,20 @@ const mocks = [
                             result : "true"
                         };
                     },
-                    PutMessage : function(args) {
+                    PutMessage : (args) => {
 
                         let id = bestedu.getId();
-                        let message = bestedu.getMessage(args.payload)
+                        let message = bestedu.getMessage(args.payload);
                         //check if message is of type Message or AppReceipt. If Message send AppReceipt, else return result
+
                         bestedu.sendAppReceipt(args, id);
 
                         return {
                             result : 
                                 {
-                                    attributes: { type: 'OK'} ,
+                                    attributes: { type: 'OK' } ,
                                     message: {
-                                        attributes: {code: 'ID'},
+                                        attributes: { code: 'ID' },
                                         text: id
                                 }}
                         };
