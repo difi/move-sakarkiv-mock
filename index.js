@@ -17,6 +17,10 @@ app.use(morgan('combined'));
 let soapString = mocks
     .map((item) => `http://localhost:${process.env.PORT}${item.pathName}?wsdl`);
 
+app.get('/api/hello', (req, res) => {
+    res.send({ express: 'Hello From Express' });
+});
+
 app.get('/', (req, res) => {
     res.send(`
             <html style="font-family: Comic Sans MS;">
