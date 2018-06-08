@@ -1,0 +1,14 @@
+.MessageForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  input{
+    margin-bottom: 10px;
+  }
+
+  .cancel-button {
+    margin-top: auto;
+    margin-left: auto;
+  }
+
+}

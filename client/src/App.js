@@ -1,39 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import  'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import Sidebar from "./components/Sidebar/Sidebar";
+import {
+    BrowserRouter as Router,
+    Route,
+} from 'react-router-dom';
+import ReactModal from 'react-modal';
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Navbar from "./components/Navbar/Navbar";
+import NewMessage from "./pages/NewMessage/NewMessage";
+
+
+let messages = [
+    {
+        title: 'melding 1'
+    }
+];
+
+ReactModal.setAppElement('#root');
 
 class App extends Component {
-
-    state = {
-        response: ''
-    };
-
-    componentDidMount() {
-        this.callApi()
-            .then(res => this.setState({ response: res.express }))
-            .catch(err => console.log(err));
+    render() {
+        return (
+          <div>
+              <Navbar />
+              <div className="container-fluid">
+                  <Router>
+                      <div className="row">
+                          <Sidebar />
+                          <Route exact path="/" component={Dashboard}/>
+                          <Route exact path="/new" component={NewMessage}/>
+                      </div>
+                  </Router>
+                  </div>
+          </div>
+        );
     }
-
-    callApi = async () => {
-        const response = await fetch('/api/hello');
-        const body = await response.json();
-
-        if (response.status !== 200) throw Error(body.message);
-
-        return body;
-    };
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-          <p className="App-intro">{this.state.response}</p>
-      </div>
-    );
-  }
 }
 
 export default App;
