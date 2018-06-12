@@ -452,10 +452,10 @@ const modalStyle = {
         outline: 'none',
         padding: '20px',
         maxWidth: '1000px',
-        maxHeight: '500px',
+        //maxHeight: '1000px',
         margin: '0 auto'
     }
-}
+};
 
 export default class sDashboard extends React.Component {
 

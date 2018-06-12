@@ -6,9 +6,28 @@
     margin-bottom: 10px;
   }
 
-  .cancel-button {
-    margin-top: auto;
-    margin-left: auto;
+
+
+  .row.wrapper {
+    height: 100%;
   }
 
+}
+
+.form-buttons {
+  margin-top: auto;
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  padding: 10px;
+
+  .message-buttons {
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  .cancel-button {
+    margin-left: auto;
+  }
 }

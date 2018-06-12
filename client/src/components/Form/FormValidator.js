@@ -78,9 +78,8 @@ export default class FormValidator {
     }
 
     notifyListeners(){
-        this.observers.forEach((observerCallback) => {
-            observerCallback(this.checkValidForm());
-        });
+        let isValid = this.checkValidForm();
+        this.observers.forEach((observerCallback) => observerCallback(isValid));
     }
 
 
@@ -89,14 +88,10 @@ export default class FormValidator {
     }
 
     removeListener(callback){
-        this.observers = this.observers.filter((item) => {
-            return item !== callback;
-        });
+        this.observers = this.observers.filter((item) => item !== callback);
     }
 
     getData(){
-        return new Map(Array.from(this.fields).filter((item) => {
-            return item[1].isValid
-        }));
+        return new Map(Array.from(this.fields).filter((item) => item[1].isValid ));
     }
 }

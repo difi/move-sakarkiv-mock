@@ -50,7 +50,7 @@ export default class Form extends React.Component {
                     </div>
                 }
 
-                { !this.props.disabled &&
+                { !this.props.hideSubmitButton &&
                     <fieldset>
                         <button type="submit" className={`btn btn-success ${!this.state.isValid ? 'disabled' : '' }`}>{ this.props.submitButtonText }</button>
                     </fieldset>

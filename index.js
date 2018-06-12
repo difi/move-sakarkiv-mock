@@ -17,7 +17,8 @@ app.use(morgan('combined'));
 let soapString = mocks
     .map((item) => `http://localhost:${process.env.PORT}${item.pathName}?wsdl`);
 
-app.get('/api/hello', (req, res) => {
+app.post('/api/send', (req, res) => {
+    console.log(req);
     res.send({ express: 'Hello From Express' });
 });
 

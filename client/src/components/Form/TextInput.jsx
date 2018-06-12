@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-let inpputFunctions = {
+let inputFunctions = {
   trim: function (value) {
       return value.replace(/ /g,'');
   }
@@ -50,7 +50,7 @@ export default class TextInput extends React.Component {
     onChange = e => {
 
         // If we have an inputFunction prop, run it:
-        let value = this.props.inputFunction ? inpputFunctions[this.props.inputFunction](e.target.value) : e.target.value;
+        let value = this.props.inputFunction ? inputFunctions[this.props.inputFunction](e.target.value) : e.target.value;
 
         this.setState({
             value: value,
